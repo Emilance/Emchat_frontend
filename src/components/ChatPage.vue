@@ -8,7 +8,7 @@ import Friend from "./sideBar/Friend.vue"
 import ChatArena from "./chatCompnents/ChatArena.vue"
 import SearchBar from "./chatCompnents/RightBar/SearchBar.vue"
 import ProfileBar from "./chatCompnents/RightBar/ProfileBar.vue"
-import { socket } from "../websocket"
+// import { socket } from "../websocket"
 
 
  
@@ -42,7 +42,7 @@ export default {
             ],
             showmessagesearch:"cancel",
             mymessage :"",
-            socket : socket,
+            // socket : socket,
             myMessagesArray: []
             
            
@@ -74,10 +74,10 @@ export default {
     },
 
     mounted:function (){
-        this.socket.on("receive_message", async (data)=>{
-           this.messages.push(data)
-           console.log(JSON.parse(JSON.stringify(this.messages)))
-       })
+        // this.socket.on("receive_message", async (data)=>{
+        //    this.messages.push(data)
+        //    console.log(JSON.parse(JSON.stringify(this.messages)))
+      //  })
 
     }
     
@@ -114,6 +114,7 @@ export default {
 </template>
 
 <style>
+
   .container {
     color:white;
     height: 100vh;

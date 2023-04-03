@@ -1,9 +1,8 @@
 <template>
     <form  class="signupform">
         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-       <div class="ufield  dfield">
-        <input  v-model="firstName"  placeholder="firstName"/>
-        <input v-model="lastName" placeholder="LastName"/>
+       <div class="ufield">
+        <input  v-model="name"  placeholder="name"/>
        </div>
        <div class="ufield">
         <input v-model="email" placeholder="email address"/>
@@ -12,7 +11,7 @@
         <input v-model="password" placeholder="password" />
        </div>
        <div class="ufield">
-         <select v-model="selected" options="gender" >
+         <select v-model="gender" options="gender" >
             <option value="male">Male</option>
             <option value="female"> Female</option>
          </select>
@@ -31,6 +30,7 @@
 
 <script>
 import axios from 'axios'
+import { register } from '../../../data/endpoints'
 
     export default {
         data(){
@@ -38,8 +38,7 @@ import axios from 'axios'
              method:{type: Function}
             }
             return{
-             firstName:"",
-             lastName:"",
+             name: "",
              email:'',
              gender:"",
              password:'',
@@ -48,26 +47,26 @@ import axios from 'axios'
             }
         },
         methods:{
-          onSubmit(e){
+         async onSubmit(e){
             e.preventDefault()
             if(!this.email){
                 alert("Email is required")
                 return
             }
             const newUser = {
-                // id :Math.floor(Math.random() * 100000),
-                firstName:this.firstName,
-                lastName : this.lastName,
+                firstName:this.name,
                 email: this.email,
-                gender: this.gender
+                gender: this.gender,
+                password:this.password
             }
-            const baseUrl = "http://localhost:4000/"
-            axios.post(`${baseUrl}/api/signup`, newUser).then( resp =>{
-                console.log(resp)
-                this.$router.push('/');
-            }).catch(err =>{
-                console.log(err)
-            })
+            const resp = await register(newUser)
+            console.log(resp)
+            // axios.post(`${baseUrl}/api/signup`, newUser).then( resp =>{
+            //     console.log(resp)
+            //     this.$router.push('/');
+            // }).catch(err =>{
+            //     console.log(err)
+            // })
         }
         }
     }
@@ -87,9 +86,7 @@ import axios from 'axios'
         backdrop-filter: blur(10px)
 
     }
-    .dfield{
-        display: flex;
-    }
+    
     .ufield{
         height: 3rem;
         width: 85%;

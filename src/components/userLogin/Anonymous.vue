@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { socket } from '../../websocket'
+// import { socket } from '../../websocket'
 
     export default {
        
@@ -37,7 +37,7 @@ import { socket } from '../../websocket'
                
                 roomName:'',
                 userName:'',
-                socket: socket
+                // socket: socket
             }
         },
         methods:{

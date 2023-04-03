@@ -2,14 +2,14 @@
 import {RouterView}   from  "vue-router"
 import ChatPage from './components/ChatPage.vue'
 import UserLogIn from './components/UserLogIn.vue';
-import { socket } from "./websocket";
+// import { socket } from "./websocket";
 
 
 
 export default {
    data(){
     return {
-      socket : socket,
+      // socket : socket,
     }
    },
     components: { ChatPage, UserLogIn },
@@ -21,7 +21,7 @@ export default {
     },
 
     mounted: function(){
-                   this.socket
+      
                 }
 } 
 
